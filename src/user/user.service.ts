@@ -13,17 +13,26 @@ export class UserService {
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     @InjectConnection() private connection: Connection
     ) {}
-
-  async create(createUserDto: userDto): Promise<User> {
-    const createdUser = new this.userModel(createUserDto);
-    return createdUser.save();
-  }
-
-  async findAll(): Promise<User[]> {
+//get all users
+  async getuser(): Promise<User[]> {
     return this.userModel.find().exec();
   }
-
-//   async findOne(id:number): Promise<User> {
-//     return this.userModel.find().first().exec();
-//   }
+//get user by id
+  async getUserById(id:number): Promise<userDto> {
+    return this.userModel.findOne({id:id}).exec();
+  }
+//add user
+  async addUser(userObj:userDto): Promise<string> {
+    const user = new this.userModel(userObj);
+    user.save();
+    return "user added successfully  to the database.";
+  }
+//update user
+  async updateUser(id:number,userObj:userDto) : Promise<void> {
+     this.userModel.updateOne({id:id},userObj);
+  }
+//delete user
+  async deleteUser(id:number): Promise<void> { 
+      this.userModel.deleteOne({id:id}).exec(); 
+    }
 }
