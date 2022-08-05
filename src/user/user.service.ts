@@ -14,7 +14,7 @@ export class UserService {
     @InjectConnection() private connection: Connection
     ) {}
 //get all users
-  async getuser(): Promise<User[]> {
+  async getAllUsers(): Promise<User[]> {
     return this.userModel.find().exec();
   }
 //get user by id
