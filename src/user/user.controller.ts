@@ -24,10 +24,10 @@ export class UserController {
         return UserService.addUser(user)
   }
 //delete user by id
-  @Delete(':id')
-  deleteUser(@Param('id') id:string) :userDto{
-       return  UserService.deleteUser(id)
- }
+//   @Delete(':id')
+//   deleteUser(@Param('id') id:string) :userDto{
+//        return  UserService.deleteUser(id)
+//  }
 
 }
     
