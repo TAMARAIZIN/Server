@@ -6,4 +6,5 @@ export class userDto extends mongoose.Document
     firstName: string;
     lastName: string;
     email: string;
+    // role: string;
 }
