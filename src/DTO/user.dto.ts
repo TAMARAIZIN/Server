@@ -1,4 +1,6 @@
-export class userDto 
+import mongoose from "mongoose";
+
+export class userDto extends mongoose.Document
 {
     id: number;
     firstName: string;

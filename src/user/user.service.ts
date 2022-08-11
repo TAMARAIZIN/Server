@@ -10,13 +10,12 @@ import { Connection } from 'mongoose';
 @Injectable()
 export class UserService {
   constructor(
-    @InjectModel("user") private userModel: Model<userDto>,
-    @InjectConnection() private connection: Connection
+    @InjectModel("user") private userModel: Model<userDto>
     ) {}
             
 
 //get all users
-  async getAllUsers(): Promise<userDto[]> {
+  async getAllUsers() {
     return await this.userModel.find();
   }
 //get user by id
