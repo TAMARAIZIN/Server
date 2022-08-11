@@ -1,7 +1,7 @@
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { Test } from '@nestjs/testing';
-import { UserDto}  from '../DTO/user.dto'
+import { User}  from '../DTO/user.dto'
 import { Model } from 'mongoose';
 import { ObjectId } from 'mongodb';
 
@@ -15,7 +15,7 @@ describe('UserController', () => {
     //     providers: [UserService],
     //   }).compile();
 
-    let u: Model<UserDto>;
+    let u: Model<User>;
     userService = new UserService(u);
     userController = new UserController(userService);
     //   userService = moduleRef.get<UserService>(UserService);
@@ -24,7 +24,7 @@ describe('UserController', () => {
 
   describe('getAllUsers', () => {
     it('should return an array of users', async () => {
-      let result:UserDto[];
+      let result:User[];
       // jest.spyOn(userService, 'getAllUsers').mockImplementation(() => result);
       let users=await userService.getAllUsers();
       expect(typeof(users)).toBe(typeof(result));

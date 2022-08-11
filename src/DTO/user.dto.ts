@@ -1,9 +1,7 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-export interface UserDto extends mongoose.Document
-{
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
+export interface User extends mongoose.Document {
+  firstName: number;
+  lastName: string;
+  email: string;
 }
