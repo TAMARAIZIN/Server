@@ -5,13 +5,16 @@ export type SystemDocument = System & Document;
 
 @Schema()
 export class System{
+
+  constructor() {
+  }
   @Prop()
   uid: number;
 
-  @Prop([String])
+  @Prop()
   topic: string;
 
-  @Prop([String])
+  @Prop()
   objectName: string;
 
   @Prop()

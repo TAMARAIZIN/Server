@@ -1,5 +1,5 @@
 import { Controller, Get, Query, Post, Body, Put, Param, Delete } from '@nestjs/common';
-import { systemDto } from '../DTO/system.dto';
+import { SystemDto } from '../DTO/system.dto';
 import  { SystemService } from './system.service';
 @Controller('service')
 export class SystemController {
@@ -21,7 +21,7 @@ export class SystemController {
     }
 //add system
     @Post()
-    addUser(@Body() system:systemDto ) {
+    addUser(@Body() system:SystemDto ) {
         return this.systemService.addSystem(system);
   }
 // delete system by id

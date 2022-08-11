@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export class systemDto extends mongoose.Document
+export interface SystemDto extends mongoose.Document
 {
     uid: number;
     topic: string;

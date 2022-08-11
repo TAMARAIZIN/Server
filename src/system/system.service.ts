@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { System, SystemDocument } from '../Schema/system.schema';
-import { systemDto } from '../DTO/system.dto';
+import { SystemDto } from '../DTO/system.dto';
 
 import { InjectConnection } from '@nestjs/mongoose';
 import { Connection } from 'mongoose';
@@ -21,13 +21,13 @@ export class SystemService {
     return this.systemModel.findOne({id:uid}).exec();
   }
 //add user
-  async addSystem(systemObj:systemDto) {
+  async addSystem(systemObj:SystemDto) {
     const system = new this.systemModel(systemObj);
     system.save();
     return "system added successfully  to the database.";
   }
 //update user
-  async updateSystem(uid:string,systemObj:systemDto) {
+  async updateSystem(uid:string,systemObj:SystemDto) {
      this.systemModel.updateOne({id:uid},systemObj);
   }
 //delete user
