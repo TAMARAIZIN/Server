@@ -1,38 +1,34 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException} from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { User, UserDocument } from '../Schema/user.schema';
-import { userDto } from '../DTO/user.dto';
-
-import { InjectConnection } from '@nestjs/mongoose';
-import { Connection } from 'mongoose';
-
+import { User } from '../DTO/user.dto';
 @Injectable()
 export class UserService {
   constructor(
-    @InjectModel(User.name) private userModel: Model<UserDocument>,
-    @InjectConnection() private connection: Connection
+    @InjectModel("user") private userModel: Model<User>
     ) {}
+            
+
 //get all users
-  async getAllUsers(): Promise<User[]> {
-    return this.userModel.find().exec();
+  async getAllUsers() {
+    return await this.userModel.find();
   }
 //get user by id
-  async getUserById(id:number): Promise<userDto> {
-    return this.userModel.findOne({id:id}).exec();
+  async getUserById(id:number): Promise<User> {
+    return await this.userModel.findOne({id:id});
   }
 //add user
-  async addUser(userObj:userDto): Promise<string> {
+  async addUser(userObj:User): Promise<string> {
     const user = new this.userModel(userObj);
     user.save();
     return "user added successfully  to the database.";
   }
 //update user
-  async updateUser(id:number,userObj:userDto) : Promise<void> {
+  async updateUser(id:number,userObj:User) : Promise<void> {
      this.userModel.updateOne({id:id},userObj);
   }
 //delete user
-  async deleteUser(id:number): Promise<void> { 
+  async deleteUser(id:string) : Promise<void> { 
       this.userModel.deleteOne({id:id}).exec(); 
     }
 }

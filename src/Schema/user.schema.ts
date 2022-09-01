@@ -4,19 +4,18 @@ import { Document } from 'mongoose';
 export type UserDocument = User & Document;
 
 @Schema()
-export class User{
-  @Prop()
-  id: number;
-
-  @Prop([String])
+export class User {
+  constructor() {
+    console.log('construct');
+  }
+  @Prop({ required: true })
   firstName: string;
 
-  @Prop([String])
+  @Prop({ required: true })
   lastName: string;
 
-  @Prop()
+  @Prop({ required: true })
   email: string;
-
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
